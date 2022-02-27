@@ -1,4 +1,5 @@
 {
+    "version": "1.0.0",
     "name": "quasilyte/kfinalize",
     "description": "register_shutdown_function() without limits",
     "type": "library",

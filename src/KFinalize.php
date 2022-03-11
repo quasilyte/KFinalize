@@ -48,6 +48,12 @@ class KFinalize {
   private static function register() {
     self::$registered = true;
     register_shutdown_function(function() {
+#ifndef KPHP
+      // PHP can interrupt the shutdown function while it's executed due to a timeout.
+      // To reduce the chance of it happening, remove the time limit during
+      // the shutdown function start.
+      set_time_limit(0);
+#endif
       foreach (self::$func_list as $fn) {
         $fn();
       }
